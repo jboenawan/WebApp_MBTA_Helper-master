@@ -73,6 +73,7 @@ def get_first_time(stop_id):
     first_time = schedule_data['mode'][0]['route'][0]['direction'][0]['trip'][0]['trip_name']
     return first_time
 
+
 def find_stop_near(place_name):
     """
     Given a place name or address, return the nearest MBTA stop and the 
@@ -81,10 +82,11 @@ def find_stop_near(place_name):
     lat, lon = get_lat_long(place_name)
     stop_list = get_nearest_station(lat,lon)
     first_time = get_first_time(stop_list[1])
+    stop = stop_list[0]
+    distance = stop_list[2]
+    return [stop, distance, first_time]
 
-    return [stop_list[0], stop_list[2], first_time]
-
-print(find_stop_near('Prudential Tower'))
-
+print(find_stop_near('Boston common'))
+# print(get_lat_long('Prudential')
 # print(find_stop_near('Prudential Tower'))
 
